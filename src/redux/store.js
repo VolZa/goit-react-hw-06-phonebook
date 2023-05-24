@@ -1,16 +1,15 @@
 //Файл оголошеня стор Redux
 import {createStore} from'redux';
-import initContacts from './constants';
 import { devToolsEnhancer } from "@redux-devtools/extension";
+import { rootReducer } from './reduser';
+import initContacts from "./constants";
 
-
-
-const initialState = {
+export const initialState = {
    contacts: initContacts,
 }
-const rootReducer = (state = initialState) =>{
-   return state;
-};  
+
+
+
 // Створюємо розширення стора, щоб додати інструменти розробника
 const enhancer = devToolsEnhancer();
 
