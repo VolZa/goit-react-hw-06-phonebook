@@ -1,39 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from 'nanoid'
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const contactsInitialState = [];
+import initContacts from "./constants";
+
 const contactsSlice = createSlice({
   name: "contacts",
-  initialState: contactsInitialState,
-  reducers: {
-    addContact: {
-      reducer(state, action) {
-        state.push(action.payload);
-      },
-      prepare(text) {
-        return {
-          payload: {
-            text,
-            id: nanoid(),
-            completed: false,
-          },
-        };
-      },
-    },
-    deleteTask(state, action) {
-      const index = state.findIndex(task => task.id === action.payload);
-      state.splice(index, 1);
-    },
-    toggleCompleted(state, action) {
-      for (const task of state) {
-        if (task.id === action.payload) {
-          task.completed = !task.completed;
-          break;
-        }
-      }
-    },
+  initialState: {
+   value: initContacts,
   },
+  reducers: {
+   addContact(state, action) {
+      // return state.push(action.payload); так не працює
+      state.value = [...state.value, action.payload];
+      },
+   delContact(state, action) {
+      state.value = state.value.filter(({id}) => id !== action.payload);
+      }
+   },
 });
+const presistConfig = {
+   key: "contacts",
+   storage,
+};
+
+export const storeContactsReducer = persistReducer(
+   presistConfig, contactsSlice.reducer,
+)
 // Експортуємо генератори екшенів та редюсер
-export const { addContact, deleteContact, toggleCompleted } = contactsSlice.actions;
-export const tasksReducer = contactsSlice.reducer;
+export const { addContact, delContact } = contactsSlice.actions;
+export const getContacts = ({ contacts: { value } }) => value;
+// export default contactsSlice.reducer;

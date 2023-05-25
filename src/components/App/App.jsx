@@ -54,7 +54,8 @@ export const App = () => {
     <Layout>
       <GlobalStyle />
       <Title title="Phonebook" />
-      <FormPhB addContact={addOneContact}/>
+      {/* <FormPhB addContact={addOneContact}/> */}
+      <FormPhB/>
       <Title title="Contacts" />
       <Filter 
         filter={filter}
@@ -62,8 +63,7 @@ export const App = () => {
       <ContactList 
         contacts={filterContacts}
         delContact={delContact}
-  />
-        
+      />      
     </Layout>
   );  
 };
