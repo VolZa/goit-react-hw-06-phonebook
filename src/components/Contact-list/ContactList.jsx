@@ -1,10 +1,11 @@
 import  PropTypes from 'prop-types'
 import { Contacts, Contact } from './ContactList.styled';
-import { getContacts } from 'redux/contactsSlice';
+import { delContact, getContacts } from 'redux/contactsSlice';
 import { getFilter } from 'redux/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const ContactList = ({ delContact }) => {
+// { delContact }
+export const ContactList = () => {
    const contacts = useSelector(getContacts);
    const filter = useSelector(getFilter);
    const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export const ContactList = ({ delContact }) => {
    const sortedFilteredContacts = getFilteredContacts().sort((a, b) =>
     a.name.toLowerCase().localeCompare(b.name.toLowerCase())
   );
+
    return (
       <Contacts>
          {sortedFilteredContacts.map(contact => {
@@ -22,13 +24,19 @@ export const ContactList = ({ delContact }) => {
                <Contact key={contact.id}>
                   <span>{contact.name}: </span>
                   <span>{contact.number}</span>
-                  <button type="button" onClick={()=>dispatch(delContact(contact.id))} >Delete</button>
+                  <button type="button" onClick={
+                     ()=>dispatch(delContact(contact.id))} >Delete</button>
                </Contact>
             );
          })}        
       </Contacts>
    );
 };
+
+
+
+
+//  const filterContacts = contacts.filter(contact => contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
 
 ContactList.propTypes = {
    contacts: PropTypes.array.isRequired,

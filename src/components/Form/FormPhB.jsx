@@ -40,18 +40,7 @@ export const FormPhB = () => {
         return errors;
       },
     });
-    // const onSubmit = ({ name, number }, { resetForm }) => {
-    //     const isName = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
-    //     const contact = {
-    //       id: nanoid(),
-    //       name,
-    //       number,
-    //     };
-    //     if (isName) return window.alert(`${name} is allready in contacts`);
-    //       dispatch(addContact(contact));
-    //       resetForm();
-    //   };
-        //  <FormPhBS onSubmit={onSubmit}>   
+
     return (
         <FormPhBS  
           // initialValues={{ name: '', number: '' }}
@@ -88,4 +77,17 @@ export const FormPhB = () => {
         </FormPhBS>
     );
 }
+
+    // const onSubmit = ({ name, number }, { resetForm }) => {
+    //     const isName = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase());
+    //     const contact = {
+    //       id: nanoid(),
+    //       name,
+    //       number,
+    //     };
+    //     if (isName) return window.alert(`${name} is allready in contacts`);
+    //       dispatch(addContact(contact));
+    //       resetForm();
+    //   };
+        //  <FormPhBS onSubmit={onSubmit}>   
 

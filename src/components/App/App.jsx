@@ -23,32 +23,14 @@ const getInitContakts = () => {
 export const App = () => {
   const [contacts, setContacts] = useState(getInitContakts);
 
-  const [filter, setFilter] = useState('');
+
 
   //якщо змінюється список контактів то перезаписуємо ого в локальне сховище
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts))
 }, [contacts]);
 
-  //обробник подій всих input (за input:name заповнює відповідне значення state, name в input і в state мають бути однакові) 
-  const onChangeInputD = value => {
-     setFilter(value)
-  }
-
-  const addOneContact = (contact) => {
-    const names = contacts.map(cont => cont.name);
-    if (names.some(n => n.toLocaleLowerCase() === contact.name.toLocaleLowerCase())) {
-      alert(`${contact.name} is already in contacts`)
-    } else {
-      setContacts( [...contacts, contact] ) 
-    }
-  }
-  
-  const delContact = (id) => {
-    setContacts(prevState => prevState.filter(contact => contact.id !== id));
-  }
-
-  const filterContacts = contacts.filter(contact => contact.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
+ 
  
   return (
     <Layout>
@@ -57,16 +39,14 @@ export const App = () => {
       {/* <FormPhB addContact={addOneContact}/> */}
       <FormPhB/>
       <Title title="Contacts" />
-      <Filter 
-        filter={filter}
-        onChangeInput={onChangeInputD}/>
-      <ContactList 
-        contacts={filterContacts}
-        delContact={delContact}
-      />      
+      <Filter/>
+      <ContactList/>      
     </Layout>
   );  
 };
+
+// contacts={filterContacts}
+// delContact={delContact}
 
 
 
