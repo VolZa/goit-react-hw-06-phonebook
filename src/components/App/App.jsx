@@ -21,7 +21,7 @@ const getInitContakts = () => {
 }
 
 export const App = () => {
-  const [contacts, setContacts] = useState(getInitContakts);
+  const [contacts] = useState(getInitContakts);
 
 
 
