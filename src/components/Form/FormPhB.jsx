@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 import {useFormik} from 'formik';
 import { FormPhBS, AddContact, Label } from './FormPhB.styled';
 // FormPhBS,
-import { addContact, getContacts } from "redux/contactsSlice";
+import { addContact, getContacts } from "redux/contacts/contactsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 // export const FormPhB = ({addContact}) => {

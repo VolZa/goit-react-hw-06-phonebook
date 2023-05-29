@@ -1,9 +1,0 @@
--src/
-   -components/
-   - redux/
-      -actions.js
-      - reducer.js
-      - constants.js
-      - selectors.js
-      - store.js
-   -indexjs

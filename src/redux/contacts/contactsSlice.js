@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import initContacts from "./constants";
+import initContacts from "../constants";
 
 const contactsSlice = createSlice({
   name: "contacts",
@@ -11,8 +11,7 @@ const contactsSlice = createSlice({
   },
   reducers: {
    addContact(state, action) {
-      // return state.push(action.payload); так не працює
-      state.value = [...state.value, action.payload];
+      state.push(action.payload);
       },
    delContact(state, action) {
       state.value = state.value.filter(({id}) => id !== action.payload);
@@ -30,4 +29,3 @@ export const storeContactsReducer = persistReducer(
 // Експортуємо генератори екшенів та редюсер
 export const { addContact, delContact } = contactsSlice.actions;
 export const getContacts = ({ contacts: { value } }) => value;
-// export default contactsSlice.reducer;

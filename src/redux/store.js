@@ -2,9 +2,9 @@
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist'
 import { configureStore } from '@reduxjs/toolkit';
 
-import { storeContactsReducer } from './contactsSlice';
+import { storeContactsReducer } from './contacts/contactsSlice';
 import initContacts from "./constants";
-import { filterSlice } from './filterSlice';
+import { filterSlice } from './filter/filterSlice';
 
 export const initialState = {
    contacts: initContacts,
